@@ -4,15 +4,15 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start:dev": "concurrently \"cd client && npm run build\" \"cd server && npm run server\" ",
-    "start": "npm run build && cd server && node server.js",
-    "server": "cd server server.js --ignore client",
-    "prebuild": "npm install --save-dev webpack-cli",
-    "build": "cd client && npm run build",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "client": "cd client && npm start",
-    "preinstall": "npm install --save-dev webpack-cli"
+    "start:dev": "concurrently \"npm run build:client\" \"npm run server\"",
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js --ignore client",
+    "build:client": "npm run build --prefix client",
+    "install": "npm install && npm run install:client && npm run install:server",
+    "install:client": "npm install --prefix client",
+    "install:server": "npm install --prefix server"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
